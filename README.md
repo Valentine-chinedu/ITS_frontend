@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Geometry Intelligent Tutor (Frontend)
+
+A Next.js app for visual, ontology-based geometry learning and practice. Mark mastered concepts, get recommendations, and solve practice problems linked to a backend.
+
+## Features
+
+- Visual concept mastery tracking
+- Ontology-driven recommendations
+- Practice problems with instant feedback
+- Shape images for concepts (SVG/PNG)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+	components/ShapeImage.tsx   # Displays concept images with fallback
+	lib/config.ts               # Backend URL config
+	problems/page.tsx           # Practice problems UI
+	page.tsx                    # Main concept mastery UI
+public/
+	shapes/                     # Place SVG/PNG images here (e.g. triangle.svg)
+		_default.svg              # Default placeholder image
+```
 
-## Learn More
+## Shape Images
 
-To learn more about Next.js, take a look at the following resources:
+- Add SVGs (preferred) or PNGs to `public/shapes/` named by concept (e.g. `triangle.svg`).
+- If an image is missing, `_default.svg` will be shown.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Troubleshooting Images
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- If images do not display, ensure your files are named correctly and placed in `public/shapes/`.
+- The fallback uses `_default.svg` for missing images.
 
-## Deploy on Vercel
+## Backend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Set the backend API URL in `app/lib/config.ts` (`BACKEND_URL`).
+- The frontend expects endpoints `/concepts`, `/next-concepts`, `/problems`, and `/check-answer`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT
